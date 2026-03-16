@@ -1,23 +1,364 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+
+
+  <!-- Schema.org CarRental 마크업(JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CarRental",
+    "name": "제주 장기렌트 가격 비교 및 추천 전문 서비스",
+    "description": "2026년 제주도 장기렌트카 비용, 장점, 단점 완벽 분석. 저렴한 견적 비교 서비스.",
+    "image": "https://도메인/jeju-rental-logo.png",
+    "url": "https://도메인/jeju-long-term-rental",
+    "telephone": "064-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "제주특별자치도 제주시 ○○로 ○○",
+      "addressLocality": "제주시",
+      "addressRegion": "제주특별자치도",
+      "postalCode": "63000",
+      "addressCountry": "KR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "제주특별자치도"
+    },
+    "priceRange": "₩₩₩",
+    "brand": [
+        {"@type": "Brand", "name": "현대자동차"},
+        {"@type": "Brand", "name": "기아자동차"},
+        {"@type": "Brand", "name": "르노코리아"},
+        {"@type": "Brand", "name": "KG모빌리티"},
+        {"@type": "Brand", "name": "테슬라"}
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: Noto Sans KR for professional, clean look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and Typography */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8; /* Soft light background */
+      color: #333;
+      line-height: 1.7;
+    }
+    header, section, footer {
+      max-width: 1000px; /* Wider content area */
+      margin: 20px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 16px; /* Rounded corners for modern look */
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* Soft shadow for depth */
+    }
+    /* Headings */
+    h1, h2, h3 { color: #0b3d91; margin-bottom: 12px; font-weight: 700; }
+    h1 { font-size: 2.8rem; text-align: center; color: #1a237e; }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid #e0e7ff; /* Lighter divider */
+      padding-bottom: 10px;
+      margin-top: 30px;
+      color: #0d47a1;
+    }
+    h3 { font-size: 1.5rem; color: #1c54b2; margin-top: 20px; }
+    /* Content Elements */
+    p, li, td, th { font-size: 1.05rem; }
+    ul, ol { padding-left: 25px; margin-bottom: 20px; }
+    /* Tables */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border-radius: 8px; overflow: hidden; }
+    th, td { border: 1px solid #c8d9ea; padding: 15px; text-align: left; background-color: #f7f9fc; }
+    th { background: #4285f4; color: #fff; font-weight: 500; border-color: #4285f4; }
+    td { background-color: #ffffff; }
+    /* Links */
+    a { color: #0b3d91; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; color: #1c54b2; }
+    /* Buttons */
+    .btn-cta {
+      display: inline-block;
+      padding: 16px 35px;
+      background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); /* Blue to Green gradient */
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 35px;
+      box-shadow: 0 8px 15px rgba(66, 133, 244, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn-cta:hover {
+      background: linear-gradient(135deg, #34a853 0%, #4285f4 100%);
+      transform: translateY(-3px) scale(1.02);
+    }
+    /* Layout specific */
+    nav ul { list-style: none; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    nav li { margin: 8px 15px; background: #e3f2fd; border-radius: 20px; transition: background 0.3s; }
+    nav li a { padding: 10px 20px; display: block; color: #1a237e; font-size: 0.95rem; font-weight: 500; }
+    nav li:hover { background: #c5e1a5; }
+
+    /* Visual Enhancements */
+    .icon-list li { list-style: none; padding: 10px 0; border-bottom: 1px dotted #e0e0e0; position: relative; padding-left: 30px; }
+    .icon-list li:before { content: "✓"; color: #34a853; font-weight: 700; position: absolute; left: 0; }
+
+    .image-container { text-align: center; margin: 25px 0; }
+    .image-container img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    .section-title-wrapper { background: #f7f9fc; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { padding: 10px; }
+      header, section, footer { margin: 10px auto; padding: 15px; }
+      nav ul { flex-direction: column; }
+      nav li { margin: 5px 0; text-align: center; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      .btn-cta { width: 100%; padding: 15px 0; margin-top: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>제주 장기렌트 가격 비교 & 추천 전문 서비스</h1>
+    <p>2026년 최신 데이터 기반, 제주 장기렌트카 비용 분석부터 추천 업체 순위까지 완벽 가이드</p>
+    <div style="text-align: center;">
+      <a class="btn-cta" href="#contact">실시간 제주 장기렌트 견적 받기</a>
+    </div>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#about-service">서비스 소개</a></li>
+      <li><a href="#cost-analysis">장기렌트 비용 분석</a></li>
+      <li><a href="#advantages">장점 vs 단점 비교</a></li>
+      <li><a href="#selection-guide">업체 및 차량 선택 가이드</a></li>
+      <li><a href="#faq">자주 묻는 질문</a></li>
+      <li><a href="#contact">1:1 맞춤 상담</a></li>
+    </ul>
+  </nav>
+
+  <section id="about-service">
+    <div class="section-title-wrapper"><h2>제주 장기렌트, 왜 선택해야 할까? (2026년 트렌드 분석)</h2></div>
+    <p>제주특별자치도는 독특한 지리적 특성과 활발한 관광 및 이주 수요로 인해 자동차 이용 환경이 내륙과는 다릅니다. 최근 <strong>제주 장기렌트</strong> 시장은 신차 구매 대신 합리적인 비용으로 차량을 이용하고자 하는 제주 도민과 장기 거주자들에게 가장 주목받는 대안으로 떠오르고 있습니다. 특히 2026년에는 전기차 보급률 증가, 렌터카 시장의 경쟁 심화 등으로 인해 다양한 프로모션과 할인 혜택이 쏟아지고 있습니다. 이 글에서는 복잡한 <strong>제주 장기렌트 가격</strong> 구조를 명확히 이해하고, <strong>저렴한 곳</strong>을 찾는 방법부터 <strong>업체 추천</strong>까지 종합적으로 다룹니다.</p>
+    <div class="image-container">
+      <img src="https://images.pexels.com/photos/11054941/pexels-photo-11054941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="제주도 해안 도로를 달리는 자동차 이미지">
+    </div>
+    <p><strong>제주 장기렌트</strong>는 신차 구매 시 발생할 수 있는 취득세, 등록세, 자동차세, 보험료 부담 없이 월 렌트료만 납부하고 차량을 이용하는 방식입니다. 특히 <strong>제주도 장기렌트</strong>는 육지 이사 후 차량 구매를 고민하는 분들이나, 세금 처리 때문에 고민하는 사업자들에게 큰 <strong>장점</strong>이 있습니다. 단순히 <strong>장기렌트 비용</strong>만 비교할 것이 아니라, 차량 관리의 편의성, 초기 비용 절감, 보험료 부담 최소화 등 다양한 측면을 고려해야 합니다.</p>
+
+    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 30px;">
+        <h3>핵심 키워드 요약</h3>
+        <p><strong>제주 장기렌트</strong>를 검색하는 분들이 가장 많이 찾는 키워드는 <strong>가격</strong>, <strong>비용</strong>, <strong>견적</strong>입니다. 이 외에도 <strong>장단점 비교</strong>, <strong>업체 추천</strong>, <strong>저렴한 곳</strong>, <strong>신차</strong>, <strong>중고차</strong>, <strong>내돈내산 후기</strong> 등 다양한 관심사가 있습니다. 특히 <strong>2026년</strong> 기준으로 시장 변화가 크기 때문에 최신 정보를 확인하는 것이 중요합니다.</p>
+    </div>
+  </section>
+
+  <section id="cost-analysis">
+    <div class="section-title-wrapper"><h2>제주 장기렌트 비용 완벽 분석 (2026년 최신 가격표)</h2></div>
+    <p><strong>제주 장기렌트 가격</strong>은 여러 요소에 의해 결정됩니다. 단순히 월 <strong>렌트료</strong>만 보고 <strong>저렴한 곳</strong>을 선택하기보다, 포함된 서비스 내용(보험, 정비)과 계약 조건(보증금, 선납금)을 꼼꼼히 확인해야 합니다. <strong>평균적인 제주 장기렌트 비용</strong>을 분석해보고, 나에게 맞는 합리적인 <strong>견적</strong>을 산출하는 방법을 알아봅니다.</p>
+
+    <div class="image-container">
+      <img src="https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="자동차 견적서 이미지">
+    </div>
+
+    <h3>주요 비용 결정 요인</h3>
+    <ol class="icon-list">
+      <li><strong>차량 모델 및 옵션:</strong> 렌트 비용의 가장 큰 부분을 차지합니다. 인기 모델(아반떼, 쏘나타, K5 등)은 렌트료가 상대적으로 저렴할 수 있습니다. 전기차(아이오닉, EV6)는 보조금 혜택에 따라 비용이 달라집니다.</li>
+      <li><strong>계약 기간 (장기렌트 기간):</strong> 렌트 기간이 길수록 월 렌트료가 낮아지는 경향이 있습니다. 보통 3년, 4년, 5년 계약이 일반적입니다.</li>
+      <li><strong>보증금 또는 선납금:</strong> 초기 비용을 지불하는 방식입니다. 보증금은 만기 시 돌려받을 수 있지만, 선납금은 미리 내는 렌트료입니다. 선납금을 낼 경우 월 렌트료가 크게 낮아집니다.</li>
+      <li><strong>정비 서비스 포함 여부:</strong> 정비 포함 여부에 따라 <strong>장기렌트 가격</strong>이 달라집니다. 정비 포함 시 타이어 교체, 엔진 오일 교환 등 유지보수가 렌트사 책임으로 넘어가 편리합니다.</li>
+      <li><strong>보험 조건:</strong> 면책금 조건에 따라 렌트료가 달라집니다. 자차보험 면책금(최소 5만원~최대 50만원)을 낮추면 월 렌트료는 높아집니다.</li>
+    </ol>
+
+    <h3>장기렌트 vs 단기렌트 vs 구매 (2026년 제주 시장 기준)</h3>
+    <p>제주에서 차량을 이용하는 방법은 다양합니다. <strong>제주 장기렌트</strong>는 신차 구매와 단기 렌트카의 장점을 결합한 형태입니다. 다음 표를 통해 <strong>장단점 비교</strong>를 명확히 할 수 있습니다.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>제주 장기렌트 (신차)</th>
+          <th>신차 구매</th>
+          <th>단기 렌트 (월단위)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>초기 비용</strong></td>
+          <td>거의 없음 (보증금 선택)</td>
+          <td>취득세, 등록세, 차량 가격 등 고가</td>
+          <td>거의 없음</td>
+        </tr>
+        <tr>
+          <td><strong>보험/세금</strong></td>
+          <td>렌트료에 포함 (보험료 상승 없음)</td>
+          <td>개별 납부 (할증 위험 있음)</td>
+          <td>렌트료에 포함 (자차보험 별도)</td>
+        </tr>
+        <tr>
+          <td><strong>차량 관리</strong></td>
+          <td>업체 대행 (정비 포함 시)</td>
+          <td>개인 책임</td>
+          <td>업체 대행</td>
+        </tr>
+        <tr>
+          <td><strong>만기 후 선택</strong></td>
+          <td>반납, 인수, 재렌트</td>
+          <td>감가상각 후 중고차 판매</td>
+          <td>반납</td>
+        </tr>
+        <tr>
+          <td><strong>장점</strong></td>
+          <td>초기 비용 부담↓, 보험료 부담↓, 간편한 유지보수</td>
+          <td>완벽한 소유권, 자유로운 운행</td>
+          <td>초단기 이용 편리, 유연성 높음</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>연관 키워드 분석 및 가격 시뮬레이션</h3>
+    <p>제주 <strong>장기렌트카</strong>를 검색하는 사용자들은 <strong>장기렌트 금액</strong>을 중요하게 여깁니다. 특히 <strong>월 렌탈료</strong>를 기준으로 <strong>가입 혜택</strong>이나 <strong>할인 이벤트</strong>를 비교합니다. <strong>저렴한 곳</strong>을 찾기 위해 다양한 <strong>업체 순위 비교</strong>를 진행합니다. 최근 <strong>네이버</strong>, <strong>구글</strong> 검색 결과에서 "제주 장기렌트", "장기렌트카 가격 비교"와 함께 <strong>자동완성 키워드</strong>로 "제주 장기렌트 비용", "제주 장기렌트 싼곳", "제주도 장기렌트 <strong>내돈내산 후기</strong>"가 많이 나타납니다.</p>
+    <p><strong>2026년 제주 장기렌트 평균 비용</strong> (보증금 0%, 48개월 기준, 차량 모델별 상이):</p>
+    <ul>
+      <li><strong>경차 (레이, 캐스퍼):</strong> 월 20만원대 초반 ~ 30만원대 초반</li>
+      <li><strong>준중형 (아반떼, K3):</strong> 월 30만원대 중반 ~ 40만원대 중반</li>
+      <li><strong>중형 SUV (투싼, 스포티지):</strong> 월 40만원대 후반 ~ 50만원대 후반</li>
+      <li><strong>전기차 (아이오닉5, EV6):</strong> 월 50만원대 후반 ~ 60만원대 후반 (보조금 변동에 따라 <strong>비용</strong> 차이 큼)</li>
+    </ul>
+    <p>이러한 <strong>평균 가격</strong>은 참고용이며, 정확한 <strong>견적</strong>은 개인의 신용도 및 차량 선택에 따라 달라집니다. <strong>장기렌트 전문 업체</strong>를 통해 상담받는 것이 가장 정확합니다.</p>
+  </section>
+
+  <section id="advantages">
+    <div class="section-title-wrapper"><h2>제주 장기렌트의 장점과 단점, 현명한 선택을 위한 비교 분석</h2></div>
+    <p><strong>제주 장기렌트</strong>는 신차 구매와 달리 명확한 <strong>장점</strong>과 <strong>단점</strong>이 존재합니다. 특히 제주도 내에서는 일반적인 장단점 외에 지역 특성에 따른 고려 사항도 많습니다. <strong>장기렌트</strong>의 <strong>장점</strong>을 최대한 활용하고 <strong>단점</strong>을 최소화하는 방법을 알아봅시다.</p>
+
+    <h3>장기렌트의 주요 장점 (Advantages)</h3>
+    <ol class="icon-list">
+      <li><strong>초기 비용 부담 ZERO:</strong> 신차를 구매할 때는 취득세, 등록세 등 초기 비용이 차량 가격의 7~10%에 달합니다. <strong>제주 장기렌트</strong>는 이러한 초기 비용이 렌트료에 포함되어 <strong>초기 비용 부담이 없습니다.</strong> 보증금 0% 조건의 <strong>저렴한 곳</strong>을 찾으면 즉시 이용이 가능합니다.</li>
+      <li><strong>보험료 할증 걱정 없음:</strong> 사고가 발생해도 개인 보험료가 할증되지 않습니다. 보험 이력이 남지 않으므로, 사고가 잦거나 운전 경력이 짧아 보험료가 비싼 운전자에게는 큰 <strong>장점</strong>입니다.</li>
+      <li><strong>LPG/전기차 선택 가능:</strong> 제주도는 LPG 충전소와 전기차 충전 인프라가 잘 갖춰져 있습니다. LPG 차량이나 전기차는 연비가 좋고 유류비가 적게 들어 장기적으로 <strong>비용 절감 효과</strong>가 뛰어납니다.</li>
+      <li><strong>편리한 차량 관리:</strong> 정비 포함 계약을 하면 렌트사에서 소모품 교체 및 정비 서비스를 제공합니다. 제주도처럼 정비소를 찾기 어려운 외곽 지역에서 거주할 경우, 렌트사의 관리 서비스는 큰 <strong>장점</strong>이 됩니다.</li>
+      <li><strong>사업자 세금 절감:</strong> 사업자가 <strong>제주 장기렌트</strong>를 이용할 경우 월 렌트료 전체를 비용 처리할 수 있어 절세 효과가 있습니다.</li>
+    </ol>
+
+    <h3>장기렌트의 주요 단점 (Disadvantages)</h3>
+    <ol>
+      <li><strong>주행거리 제한:</strong> 렌트 계약 시 연간 주행거리를 정해야 합니다. 주행거리를 초과할 경우 추가 비용이 발생합니다. 제주도 내에서만 운행하는 경우는 큰 문제가 아니지만, 육지 출장이 잦은 경우에는 주의해야 합니다.</li>
+      <li><strong>중도 해지 위약금:</strong> 계약 기간을 다 채우지 못하고 해지할 경우 위약금이 발생합니다. 보통 잔여 렌트료의 일정 비율을 위약금으로 내야 합니다. 계약 전 반드시 중도 해지 조건을 확인해야 합니다.</li>
+      <li><strong>'하' 번호판 사용:</strong> 렌터카는 일반 차량과 달리 '하', '호', '허' 번호판을 사용합니다. 일부 운전자는 이를 <strong>단점</strong>으로 생각할 수 있습니다.</li>
+      <li><strong>보험 경력 단절:</strong> 렌트 기간 동안 본인 명의의 자동차 보험 경력이 단절됩니다. 만기 후 차량을 인수한 후 보험에 다시 가입할 때 보험료가 비싸질 수 있습니다.</li>
+    </ol>
+    <div style="background: #fff8e1; padding: 20px; border-radius: 10px; margin-top: 30px;">
+        <h3>현명한 선택을 위한 조언</h3>
+        <p><strong>제주 장기렌트</strong>는 <strong>장점</strong>과 <strong>단점</strong>이 명확합니다. <strong>신차 장기렌트</strong>를 선택할 때 초기 비용 절감과 편리한 관리를 선호하는 사람에게는 <strong>장점</strong>이 큽니다. 반면, 주행거리가 많고 보험 경력을 중요시하는 사람에게는 <strong>단점</strong>이 부각됩니다. <strong>비교</strong>를 통해 본인의 상황에 맞는 최적의 선택을 하세요. <strong>제주 장기렌트 업체 순위</strong>나 <strong>추천</strong> 정보를 참고하여 다양한 <strong>견적</strong>을 받아보는 것이 좋습니다.</p>
+    </div>
+    <div style="text-align: center;">
+      <a class="btn-cta" href="#contact">전문가와 장단점 상담하기</a>
+    </div>
+  </section>
+
+  <section id="selection-guide">
+    <div class="section-title-wrapper"><h2>제주 장기렌트 업체 순위 및 차량 선택 가이드</h2></div>
+    <p>제주도에는 다양한 <strong>장기렌트 전문 업체</strong>가 있습니다. 대기업 렌트사(롯데렌터카, SK렌터카)부터 지역 소규모 렌트사까지 선택의 폭이 넓습니다. <strong>저렴한 곳</strong>을 찾으려면 여러 <strong>업체 순위 비교</strong>가 필수입니다.</p>
+
+    <h3>1. 업체 선택 시 고려사항: 가격 vs 서비스</h3>
+    <p><strong>제주 장기렌트 업체</strong>를 선택할 때는 <strong>가격</strong>뿐만 아니라 서비스의 질을 함께 고려해야 합니다. 특히 제주도 내에서는 비상 상황 발생 시 빠른 대처가 중요합니다. <strong>업체 추천</strong> 기준은 다음과 같습니다.</p>
+    <div class="image-container">
+      <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="자동차 모델을 비교하는 이미지">
+    </div>
+
+    <h4>주요 비교 항목</h4>
+    <ul>
+      <li><strong>정비 서비스 네트워크:</strong> 제주도 전역에 정비 네트워크를 보유하고 있는지 확인합니다.</li>
+      <li><strong>사고 대차 서비스:</strong> 사고 발생 시 신속하게 대차 차량을 지원해주는지 여부.</li>
+      <li><strong>초기 비용 및 할인 혜택:</strong> <strong>신규 가입 혜택</strong>, <strong>사은품</strong>, <strong>현금지원</strong>, <strong>상품권</strong> 제공 여부 등을 비교합니다.</li>
+      <li><strong>만기 시 인수 조건:</strong> 만기 후 인수 가격이 합리적인지 확인합니다.</li>
+    </ul>
+
+    <h3>2. 차량 선택 가이드: 제주 환경에 적합한 차량은?</h3>
+    <p>제주도는 해안 도로와 산간 도로가 많아 차량 선택이 중요합니다. <strong>장기렌트</strong> 차량을 고를 때 <strong>제주</strong> 환경을 고려한 선택 팁입니다.</p>
+    <h4>제주도에서 인기 있는 렌트 차량 모델</h4>
+    <ul>
+      <li><strong>SUV/RV:</strong> 제주도의 비포장도로나 산간 도로에서 안정적인 주행이 가능합니다. 캠핑 등 레저 활동을 즐기기에도 적합합니다. (추천 모델: 투싼, 스포티지, 쏘렌토, 싼타페)</li>
+      <li><strong>경차/소형차:</strong> 좁은 골목이나 주차 공간이 부족한 제주 구시가지에서 운전이 편리합니다. <strong>장기렌트 비용</strong>도 가장 <strong>저렴한 곳</strong>을 찾을 수 있습니다. (추천 모델: 캐스퍼, 레이, 아반떼)</li>
+      <li><strong>전기차:</strong> 제주도는 전기차 보급률이 높고 충전 인프라가 잘 되어 있습니다. 유류비 절감 효과가 커서 <strong>장기렌트</strong>로 이용 시 <strong>경제성</strong>이 뛰어납니다. (추천 모델: 아이오닉5, EV6, 니로EV)</li>
+    </ul>
+
+    <h3>3. 제주 장기렌트 계약 체크리스트</h3>
+    <p>성공적인 <strong>제주 장기렌트</strong> 계약을 위한 <strong>체크리스트</strong>입니다. <strong>내돈내산 후기</strong>를 참고하여 <strong>업체</strong>를 결정하기 전에 다음 사항을 확인하세요.</p>
+    <ol class="icon-list">
+      <li><strong>견적 비교 (최소 3개 이상):</strong> <strong>제주 장기렌트 전문 업체</strong> 여러 곳에서 <strong>견적</strong>을 받아 <strong>가격</strong>을 <strong>비교</strong>합니다. <strong>평균</strong> 시세보다 <strong>저렴한 곳</strong>을 찾는 것이 중요합니다.</li>
+      <li><strong>약정 주행거리 확인:</strong> 1년 주행거리를 꼼꼼하게 계산하여 계약합니다. 초과 시 패널티가 발생하므로 넉넉하게 잡는 것이 좋습니다.</li>
+      <li><strong>보험 및 면책금 조건:</strong> 자차보험 면책금(최소 5만원~최대 50만원)을 확인합니다. <strong>장기렌트 업체</strong>마다 조건이 다르므로 반드시 비교해야 합니다.</li>
+      <li><strong>만기 시 인수 가격 확인:</strong> 만기 후 인수할 계획이라면, 계약 시점의 예상 인수 가격을 미리 확인하여 추후 불이익을 방지합니다.</li>
+      <li><strong>정비 서비스 조건:</strong> 정비 포함 여부, 정비 주기를 확인합니다. <strong>장기렌트</strong>의 <strong>장점</strong>인 관리를 제대로 받기 위한 필수 점검 사항입니다.</li>
+    </ol>
+  </section>
+
+  <section id="faq">
+    <div class="section-title-wrapper"><h2>자주 묻는 질문 (FAQ)</h2></div>
+    <dl>
+      <dt>Q1: <strong>제주 장기렌트</strong>는 신용 등급이 낮아도 가능한가요?</dt>
+      <dd>A: 신용 등급에 따라 <strong>가입</strong> 가능 여부가 결정됩니다. 보통 6등급 이내라면 큰 문제가 없지만, 신용 등급이 낮거나 개인 회생 중인 경우 심사 과정이 까다로울 수 있습니다. 이 경우 <strong>보증금</strong> 조건을 높이거나 <strong>중고 장기렌트</strong>를 고려할 수 있습니다. <strong>업체</strong>에 따라 심사 기준이 다르므로 <strong>비교 추천</strong>을 받아보세요.</dd>
+
+      <dt>Q2: <strong>제주 신차 장기렌트</strong>와 <strong>중고 장기렌트</strong>의 차이점은 무엇인가요?</dt>
+      <dd>A: <strong>신차 장기렌트</strong>는 완전히 새로운 차량을 렌트하는 방식입니다. <strong>중고 장기렌트</strong>는 기존에 운행되던 차량을 다시 렌트하는 방식입니다. <strong>중고 장기렌트</strong>는 <strong>신차</strong>보다 <strong>월 비용</strong>이 <strong>저렴한 곳</strong>이 많지만, 차량 상태를 꼼꼼히 확인해야 합니다. <strong>가성비</strong>를 중요시하는 분들은 <strong>중고 장기렌트</strong>를 고려할 수 있습니다.</dd>
+
+      <dt>Q3: <strong>장기렌트</strong> 만기 시 인수를 할지 반납을 할지 어떻게 결정하나요?</dt>
+      <dd>A: 차량 <strong>인수</strong> 여부는 만기 시점의 차량 상태, 중고차 시세, 그리고 계약 시 정한 <strong>인수 가격</strong>을 <strong>비교</strong>하여 결정합니다. <strong>인수 가격</strong>이 중고차 시세보다 높다면 반납하고, 중고차 시세가 높다면 <strong>인수</strong>하는 것이 <strong>장점</strong>입니다. 계약 시점에 <strong>인수 가격</strong>을 미리 확인하는 것이 중요합니다.</dd>
+
+      <dt>Q4: <strong>제주 장기렌트</strong> 이용 시 <strong>할인 혜택</strong>이나 <strong>이벤트</strong>를 받을 수 있나요?</dt>
+      <dd>A: 네, <strong>장기렌트 업체</strong>들은 <strong>신규 가입</strong> 고객 유치를 위해 <strong>할인 이벤트</strong>, <strong>사은품</strong>, <strong>현금지원</strong>, <strong>상품권</strong> 등을 제공합니다. 특히 <strong>네이버</strong>, <strong>유튜브</strong>, <strong>인스타그램</strong> 등 온라인 채널을 통해 <strong>광고</strong>가 활발하게 이루어지고 있습니다. <strong>저렴한 곳</strong>을 찾으려면 이러한 <strong>혜택</strong>을 적극적으로 활용하는 것이 좋습니다.</dd>
+
+      <dt>Q5: <strong>제주 장기렌트</strong>의 주유 카드나 <strong>상품</strong> 관련 <strong>혜택</strong>이 있나요?</dt>
+      <dd>A: 일부 <strong>장기렌트 업체</strong>는 특정 주유소와 연계하여 할인 혜택을 제공하거나, 렌트 기간 동안 사용할 수 있는 주유 상품권을 제공하는 경우가 있습니다. <strong>가입</strong> 시 이러한 <strong>상품</strong> 및 <strong>혜택</strong>을 확인하세요. <strong>비용</strong> 절감에 큰 도움이 될 수 있습니다.</dd>
+    </dl>
+  </section>
+
+  <section id="contact">
+    <div class="section-title-wrapper"><h2>제주 장기렌트 맞춤 견적 상담 문의</h2></div>
+    <p>나에게 딱 맞는 <strong>제주 장기렌트카</strong>를 찾기 위해서는 정확한 <strong>비교 견적</strong>이 필수입니다. 아래 양식을 작성해 주시면 <strong>2026년 최신 가격</strong>을 반영한 <strong>맞춤 견적</strong>을 신속하게 안내해 드립니다. <strong>저렴한 곳</strong>을 찾으시는 분, <strong>업체 추천</strong>을 원하시는 분 모두 환영합니다.</p>
+    <form action="/submit" method="POST" style="max-width:600px; margin:auto; padding: 20px; border: 1px solid #e0e7ff; border-radius: 10px; background: #fafafa;">
+      <label for="name">이름<span style="color:red;">*</span></label><br />
+      <input type="text" id="name" name="name" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size: 1rem;" placeholder="이름을 입력해주세요" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label><br />
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size: 1rem;" />
+
+      <label for="move-type">희망 차량 유형<span style="color:red;">*</span></label><br />
+      <select id="move-type" name="move_type" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size: 1rem;">
+        <option value="">차량 유형을 선택하세요</option>
+        <option value="경차 (레이, 캐스퍼)">경차 (레이, 캐스퍼)</option>
+        <option value="준중형 세단 (아반떼, K3)">준중형 세단 (아반떼, K3)</option>
+        <option value="중형 세단 (쏘나타, K5)">중형 세단 (쏘나타, K5)</option>
+        <option value="중형 SUV (투싼, 스포티지)">중형 SUV (투싼, 스포티지)</option>
+        <option value="대형 SUV/승합차 (싼타페, 카니발)">대형 SUV/승합차 (싼타페, 카니발)</option>
+        <option value="전기차 (아이오닉, EV6)">전기차 (아이오닉, EV6)</option>
+        <option value="기타">기타</option>
+      </select>
+
+      <label for="duration">희망 렌트 기간<span style="color:red;">*</span></label><br />
+      <select id="duration" name="duration" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size: 1rem;">
+        <option value="">기간을 선택하세요</option>
+        <option value="36개월">36개월</option>
+        <option value="48개월">48개월</option>
+        <option value="60개월">60개월</option>
+        <option value="기타 (추가 요청사항 기재)">기타 (추가 요청사항 기재)</option>
+      </select>
+
+      <label for="message">추가 요청 사항</label><br />
+      <textarea id="message" name="message" rows="4" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size: 1rem;" placeholder="예: 보증금 여부, 희망하는 특정 모델, 운행 거리 등"></textarea>
+
+      <button type="submit" class="btn-cta">견적 문의 보내기</button>
+    </form>
+  </section>
+
+  
+</body>
 </html>
